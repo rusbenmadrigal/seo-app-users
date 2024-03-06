@@ -1,3 +1,5 @@
+import Users from "./components/Users";
+
 async function fetchUsers() {
   const res = await fetch("https://reqres.in/api/users");
   const data = await res.json();
@@ -7,22 +9,7 @@ async function fetchUsers() {
 async function HomePage() {
   const users = await fetchUsers();
 
-  return (
-    <ul>
-      {users.map((user) => (
-        <li key={user.id}>
-          <div>
-            <h5>
-              {user.id} {user.first_name} {user.last_name}
-            </h5>
-            <p>
-              E-mail: {user.email}
-            </p>
-          </div>
-        </li>
-      ))}
-    </ul>
-  );
+  return <Users users={users} />;
 }
 
 export default HomePage;
